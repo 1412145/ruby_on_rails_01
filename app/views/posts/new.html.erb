@@ -1,0 +1,28 @@
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="<%= root_path %>">Home</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="<%= posts_path %>">Blog</a>
+  </li>
+  <li class="breadcrumb-item active">Add new post</li>
+</ol>
+
+
+<div class="container">
+    <!-- <div class="card mx-auto mt-5"> -->
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 ">
+          
+          <div class="page-header">
+          <h1 class="text-center"><small>Create new post</small></h1>
+        </div>
+          <%= render 'form' %>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+        
+    <!-- </div> -->
+</div>

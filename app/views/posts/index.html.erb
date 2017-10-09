@@ -1,0 +1,86 @@
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="<%= root_path %>">Home</a>
+  </li>
+  <li class="breadcrumb-item active">Blog</li>
+</ol>
+
+<div class="mb-0 mt-4">
+    <div class="row">
+        <div class="col-md-2 col-sm-2 col-lg-2">
+            <i class="fa fa-newspaper-o"></i> Blog
+            <div class="clearfix"></div>
+            <%= link_to new_post_path do %>
+            <button type="button" class="btn btn-primary btn-sm"">Add new post</button>
+            <% end %>
+        </div>
+       
+    </div>
+    
+</div>
+<hr class="mt-2">
+
+<% @post.each do |post| %>
+    <div class="card-rows">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="media mt-3">
+                    <a class="d-flex pr-3" href="#">
+                        <img src="<%= post.urlimg %>" alt="" width="45px" height="45px">
+                    </a>
+                    <div class="media-body">
+                        <h6 class="card-title mb-1"><a href="#"><%= post.username %></a></h6>
+                        <div class="small text-muted">Created <%= time_ago_in_words(post.created_at)%> ago</div>
+                    </div>
+                    <div class="dropdown">
+                        <a class="nav-link" id="moreActionDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                    
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="moreActionDropdown">
+                            <a class="dropdown-item" href="<%= edit_post_path(post) %>">
+                                <span class="small text-muted">Edit Post</span>
+                            </a>
+                            <%= link_to post_path(post),
+                                method: :delete,
+                                data: { confirm: 'Are you sure?' },
+                                class: "dropdown-item" do %>
+                                    <span class="small text-muted">Delete Post</span>
+                            <%end%>
+                            
+                        </div>
+                    </div>
+                </div>
+                <p class="card-text medium">
+                    <h4><b><%= post.title %></b></h4>
+                </p>
+                <p class="card-text medium">
+                    <%= truncate(post.content, length: 100, separator: ' ') %>
+                </p>
+                <p class="card-text small" align="right">
+                    <a href="<%= post_path(post) %>">View more >></a>
+                </p>
+            </div>
+            <hr class="my-0">
+            <div class="card-footer medium text-muted">
+                <a class="mr-3 d-inline-block">
+                    <i class="fa fa-fw fa-eye"></i> <span id="<%= post.id %>" class="view-count-class"><%= post.viewcount %></span></a>
+            </div>
+        </div>
+    </div>
+<% end %>
+
+<script>
+if ($('.view-count-class').length) {
+  
+  setInterval(function() {
+    <% @post.each do |post| %>
+      $.ajax({url: "/posts/" + "<%= post.id %>" + "/viewcount", success: function(result){
+        $('#'+"<%= post.id %>").html(result);
+      }});
+    <% end %>
+    
+  }, 3000);
+  
+}
+</script>

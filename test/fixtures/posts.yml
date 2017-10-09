@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  content: MyText
+  viewcount: 1
+  username: MyString
+  isdeleted: false
+  urlimg: MyString
+
+two:
+  title: MyString
+  content: MyText
+  viewcount: 1
+  username: MyString
+  isdeleted: false
+  urlimg: MyString

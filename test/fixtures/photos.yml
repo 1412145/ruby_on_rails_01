@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  urlimg: MyString
+  creator: MyString
+  viewcount: 1
+  album: one
+
+two:
+  urlimg: MyString
+  creator: MyString
+  viewcount: 1
+  album: two

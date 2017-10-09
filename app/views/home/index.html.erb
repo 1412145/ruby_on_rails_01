@@ -1,0 +1,59 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    Home
+  </li>
+</ol>
+
+<div class="mb-0 mt-4">
+<h2><i class="fa fa-newspaper-o"></i> News Feed</h2>
+</div>
+<hr class="mt-2">
+<div class="row">
+<% @photos.each do |photo| %>
+<div class="col-md-4">
+      <div class="card mb-3">
+      <a href="/albums/<%= photo.album_id %>/photo/<%= photo.id %>"><img style="height: 200px;" class="card-img-top img-fluid w-100" src="<%= photo.urlimg %>" alt=""></a>
+      <div class="card-footer small text-muted"> Created by <%= photo.creator%> 
+         <% if photo.viewcount != nil %>
+          <span class="pull-right"><%= photo.viewcount %> views</span>
+          <% else %>
+          <span class="pull-right">0 views</span>
+          <% end %>
+           <div class="clearfix"></div>
+          <span class="small text-muted"><%= time_ago_in_words(photo.created_at)%> ago </span>
+    </div>
+    </div>
+</div>
+<% end %>
+</div>
+
+<div style=""class="row">
+<% @posts.each do |post| %>
+    <div class="col-md-12">
+        <div class="card-rows">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="media mt-3">
+                        <a class="d-flex pr-3" href="#">
+                            <img src="http://placehold.it/45x45" alt="">
+                        </a>
+                        <div class="media-body">
+                            <h6 class="card-title mb-1"><a href="#"><%= post.username %></a></h6>
+                            <div class="small text-muted">Created <%= time_ago_in_words(post.created_at) %> ago</div>
+                        </div>
+                    </div>
+                    <p class="card-text medium">
+                        <h4><b><%= post.title %></b></h4>
+                    </p>
+                    <p class="card-text medium">
+                        <%= truncate(post.content, length: 100, separator: ' ') %>
+                    </p>
+                    <p class="card-text small" align="right">
+                        <a href="<%= post_path(post) %>">View more >></a>
+                    </p>
+                </div>    
+            </div>
+        </div>
+    </div>
+<% end %>
+</div>

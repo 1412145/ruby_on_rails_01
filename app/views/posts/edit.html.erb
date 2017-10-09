@@ -1,0 +1,25 @@
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="<%= root_path %>">Home</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="<%= posts_path %>">Blog</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="<%= post_path(@post) %>">
+        <%= @post.title %>
+    </a>
+  </li>
+  <li class="breadcrumb-item active">Edit</li>
+</ol>
+
+<!-- <h1>Edit post</h1> -->
+<div class="bg-light">
+  <div class="container">
+      <div class="card mx-auto mt-5">
+          <div class="card-header">Edit Post</div>
+          <%= render 'form' %>
+      </div>
+  </div>
+</div>

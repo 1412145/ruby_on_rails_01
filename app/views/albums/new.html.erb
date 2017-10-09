@@ -1,0 +1,56 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="<%= root_path %>">Home</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="<%= albums_path %>">Albums</a>
+  </li>
+  <li class="breadcrumb-item active">Create new album</li>
+</ol>
+
+<div class="page-header">
+  <h1 class="text-center"><small>Create new album</small></h1>
+</div>
+
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-6">
+    
+  <%= form_with scope: :album, url: albums_path, local: true do |form| %>
+  <% if @album.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:
+      </h2>
+      <ul>
+        <% @album.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :Title %><br>
+    <%= form.text_field :title, :class => 'form-control' %>
+  </p>
+ 
+  <p>
+    <%= form.label :Description %><br>
+    <%= form.text_area :description, :class => 'form-control' %>
+  </p>
+
+  <p>
+    <%= form.label :'Choose photo' %><br>
+    <%= form.file_field :urlimg, :class => 'btn btn-outline-primary' %>
+  </p>
+
+  <p>
+    <%= form.submit 'Create album',:class => 'btn btn-primary' %>
+  </p>
+<% end %>
+
+  </div>
+  <div class="col-3"></div>
+</div>
+
